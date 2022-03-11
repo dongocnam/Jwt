@@ -17,7 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AuthTokenFilter extends OncePerRequestFilter{
+public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
     @Autowired
@@ -25,7 +25,7 @@ public class AuthTokenFilter extends OncePerRequestFilter{
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response
-    , FilterChain filterChain) throws ServletException, IOException {
+            , FilterChain filterChain) throws ServletException, IOException {
         try{
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)){
@@ -33,7 +33,7 @@ public class AuthTokenFilter extends OncePerRequestFilter{
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                    userDetails,null, userDetails.getAuthorities());
+                        userDetails,null, userDetails.getAuthorities());
                 auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(auth);
