@@ -6,7 +6,7 @@ import org.aspectj.weaver.GeneratedReferenceTypeDelegate;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
 
     @Id

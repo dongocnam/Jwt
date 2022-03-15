@@ -23,10 +23,7 @@ import java.util.Set;
     public User() {
     }
 
-    public User(String username, String email, String encode){
-
-    }
-        public User(long id, String username, String email, String password){
+        public User( String username, String email, String password){
             this.username = username;
             this.email = email;
             this.password = password;
