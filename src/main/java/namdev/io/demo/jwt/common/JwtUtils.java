@@ -2,7 +2,7 @@ package namdev.io.demo.jwt.common;
 
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
-import namdev.io.demo.jwt.services.UserDetailsImpl;
+import namdev.io.demo.jwt.Service.impl.UserDetailsImpl;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;

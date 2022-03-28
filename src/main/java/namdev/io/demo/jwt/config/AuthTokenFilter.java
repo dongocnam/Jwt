@@ -1,7 +1,7 @@
 package namdev.io.demo.jwt.config;
 import java.io.IOException;
 import namdev.io.demo.jwt.common.JwtUtils;
-import namdev.io.demo.jwt.services.UserDetailsServiceImpl;
+import namdev.io.demo.jwt.Service.impl.UserDetailsServiceImpl;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

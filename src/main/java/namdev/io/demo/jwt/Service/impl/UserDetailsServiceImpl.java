@@ -1,5 +1,6 @@
-package namdev.io.demo.jwt.services;
+package namdev.io.demo.jwt.Service.impl;
 
+import namdev.io.demo.jwt.Service.impl.UserDetailsImpl;
 import namdev.io.demo.jwt.entities.User;
 import namdev.io.demo.jwt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
+        UserRepository userRepositorys = null;
+        User user = userRepositorys.findByUsername(username)
                 .orElseThrow(() ->new UsernameNotFoundException("User Not Found with username:"+ username));
         return UserDetailsImpl.build(user);
     }

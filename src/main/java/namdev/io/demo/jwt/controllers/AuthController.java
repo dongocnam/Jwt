@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
+import namdev.io.demo.jwt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,11 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import namdev.io.demo.jwt.common.ERole;
 import namdev.io.demo.jwt.common.JwtUtils;
@@ -29,8 +26,7 @@ import namdev.io.demo.jwt.dto.SignupRequest;
 import namdev.io.demo.jwt.entities.Role;
 import namdev.io.demo.jwt.entities.User;
 import namdev.io.demo.jwt.repositories.RoleRepository;
-import namdev.io.demo.jwt.repositories.UserRepository;
-import namdev.io.demo.jwt.services.UserDetailsImpl;
+import namdev.io.demo.jwt.Service.impl.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -55,7 +51,8 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@Validated @RequestBody LoginRequest loginRequest){
 
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                        loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
